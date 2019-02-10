@@ -1,5 +1,3 @@
-module.exports = 
-    createSearchQuery;
 
 // options:
 // {
@@ -14,7 +12,7 @@ module.exports =
 //     project: null;// {}
 // }
 
-function createSearchQuery  (reqData) {
+var createSearchQuery = function  (reqData) {
     let searchText = reqData.searchText || "";
     let searchFields = reqData.searchFields || false;
     let caseSensitive = reqData.caseSensitive || false;
@@ -57,4 +55,9 @@ var getAggregationArray = function (req) {
         aggregateArray.push({ $project: project });
     }
     return aggregateArray;
+}
+
+module.exports = {
+	createSearchQuery:createSearchQuery,
+	getAggregationArray:getAggregationArray
 }

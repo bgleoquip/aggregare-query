@@ -1,9 +1,11 @@
 const test = require('tap').test;
-const aggregateQuery = require("../index");
+const {createSearchQuery} = require("../index");
 
 test('smoke test', function (t) {
-        const noSearch = aggregateQuery.createSearchQuery({});
+        var noSearch = createSearchQuery({});
         console.log(noSearch)
-        t.is(false,false);
+        t.is(noSearch,false);
+        noSearch = createSearchQuery({searchText=""});
+        console.log(noSearch)
         t.end();
 });
