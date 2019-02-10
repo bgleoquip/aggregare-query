@@ -1,0 +1,25 @@
+{
+  "name": "aggregation-query",
+  "version": "1.0.0",
+  "description": "get aggregated query for mongodb",
+  "main": "index.js",
+  "scripts": {
+    "test": "tap --coverage test/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bgbhavesh/aggregare-query.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bgbhavesh/aggregare-query/issues"
+  },
+  "homepage": "https://github.com/bgbhavesh/aggregare-query#readme",
+  "devDependencies": {
+    "nyc": "^13.2.0",
+    "standard": "^12.0.1",
+    "tap": "^12.5.2"
+  }
+}
