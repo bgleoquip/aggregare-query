@@ -4,21 +4,21 @@
 //     caseSensitive: false;
 //     searchFields: ["",""];
 //     searchText: "";
-//     uid: null;
 //     match: { };
 //     sort: null;// {createdBy: -1}
 //     limit: null;// Numeric 
 //     skip: null;// Numeric 
 //     project: null;// {}
 // }
+var _ = require('lodash/core');
 
-var createSearchQuery = function  (reqData) {
+var createSearchQuery = function (reqData) {
     let searchText = reqData.searchText || "";
     let searchFields = reqData.searchFields || false;
     let caseSensitive = reqData.caseSensitive || false;
     if (!searchText || searchText === "" || !searchFields || searchFields.length === 0) {
         return false;
-	}
+    }
     let searchQueryArray = [];
     let searchTextArray = searchText.split(" ");
     for (let i = 0; i < searchFields.length; i++) {
@@ -34,7 +34,7 @@ var createSearchQuery = function  (reqData) {
 };
 
 var getAggregationArray = function (req) {
-    let reqData = req;
+    let reqData = req || {};
     let match = reqData.match || {};
     let limit = reqData.limit || 10;
     let skip = reqData.skip || 0;
@@ -45,10 +45,10 @@ var getAggregationArray = function (req) {
     match = _.extend(match, searchQuery);
     aggregateArray.push({ $match: match });
     aggregateArray.push({ $sort: sort });
-    if (skip) {
+    if (skip || skip === 0) {
         aggregateArray.push({ $skip: skip });
     }
-    if (limit) {
+    if (limit || limit === 0) {
         aggregateArray.push({ $limit: limit });
     }
     if (project) {
@@ -58,6 +58,6 @@ var getAggregationArray = function (req) {
 }
 
 module.exports = {
-	createSearchQuery:createSearchQuery,
-	getAggregationArray:getAggregationArray
+    createSearchQuery,
+    getAggregationArray
 }
